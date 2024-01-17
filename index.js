@@ -85,7 +85,7 @@ app.get('/ads', async (req, res) => {
 
       // Render the Handlebars template for ads with subcategory
       console.log('Response Data:', response.data);
-      res.render('adsWithSubcategory', { ads: response.data.ads, subcategoryName });
+      res.render('adsWithSubcategory', response); //i dunno the way i need to research the stuff properly
     } else {
       return res.status(400).send('Missing category or subcategory parameter');
     }
