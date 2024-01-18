@@ -73,19 +73,16 @@ app.get('/ads', async (req, res) => {
 
       // Get the category name from the response or another source
       const categoryName = response.data.categoryName || 'Unknown Category';
-      console.log(categoryName);
+      console.log(response.data.id);
       // Render the Handlebars template for ads with category
-      res.render('adsWithCategory', { ads: response.data.ads, categoryName });
+      res.render('adsWithCategory', response.data);
     } else if (subcategoryId) {
       // Make a GET request to another API with the subcategoryId
       const response = await axios.get(`https://wiki-ads.onrender.com/ads?subcategory=${subcategoryId}`);
-
-      // Get the subcategory name from the response or another source
-      const subcategoryName = response.data.subcategoryName || 'Unknown Subcategory';
-
+      const subCategoryName = response.data.subCategoryName || 'Unknown Category';
       // Render the Handlebars template for ads with subcategory
-      console.log('Response Data:', response.data);
-      res.render('adsWithSubcategory', response); //i dunno the way i need to research the stuff properly
+      console.log(response);
+      res.render('adsWithSubcategory', {layout : 'index', response});
     } else {
       return res.status(400).send('Missing category or subcategory parameter');
     }
