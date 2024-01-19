@@ -82,7 +82,7 @@ app.get('/ads', async (req, res) => {
       const subCategoryName = response.data.subCategoryName || 'Unknown Category';
       // Render the Handlebars template for ads with subcategory
       console.log(response);
-      res.render('adsWithSubcategory', {layout : 'index', response});
+      res.render('adsWithSubcategory', {layout : 'main', response});
     } else {
       return res.status(400).send('Missing category or subcategory parameter');
     }
