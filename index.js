@@ -81,8 +81,8 @@ app.get('/ads', async (req, res) => {
       const response = await axios.get(`https://wiki-ads.onrender.com/ads?subcategory=${subcategoryId}`);
       const subCategoryName = response.data.subCategoryName || 'Unknown Category';
       // Render the Handlebars template for ads with subcategory
-      console.log(response);
-      res.render('adsWithSubcategory', {layout : 'main', response});
+      console.log(response.data);
+      res.render('layouts/index', {layout : 'main', response});
     } else {
       return res.status(400).send('Missing category or subcategory parameter');
     }
